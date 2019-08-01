@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
         Loans:[],
         auth:[],
         members:[],
+        land:[],
     },
     getters:{
         APPLICATIONS: state => state.loanApplications,
@@ -20,6 +21,8 @@ export const store = new Vuex.Store({
         LOANS:state => state.Loans,
         AUTH:state => state.auth,
         MEMBERS:state => state.members,
+        LAND:state => state.land,
+
     },
     mutations:{
         SET_LOANAPPLICATIONS: (state, payload) =>{
@@ -37,8 +40,11 @@ export const store = new Vuex.Store({
         SET_LOGIN: (state,payload)=>{
             state.auth = payload
         },
-        SET_MEMBER: (state, payload)=>{
+        SET_MEMBERS: (state, payload)=>{
             state.members = payload
+        },
+        SET_LAND: (state, payload)=>{
+            state.land = payload
         }
 
         
@@ -97,11 +103,10 @@ export const store = new Vuex.Store({
            
         },
 
-        ADD_MEMBERS: async (context, payload)=>{
-            await axios.post('http://localhost:3000/api/v1/users/register',payload)
-                       .then((response)=>{
-                           console.log(response)
-                       })
+        // eslint-disable-next-line
+        GET_MEMBERS: async (context, payload)=>{
+            let {data} = await axios.get('http://localhost:3000/api/v1/users')
+            context.commit('SET_MEMBERS',data)
         }
     
     }

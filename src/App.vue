@@ -7,15 +7,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <router-link class="nav-item nav-link active" to='/'>Home <span class="sr-only">(current)</span></router-link>
+            <router-link class="nav-item nav-link" to='/'>Home</router-link>
             <router-link class="nav-item nav-link" to="/members">Members</router-link>
-            <router-link class="nav-item nav-link" to="/loans">Loan Applications</router-link>
+            <router-link class="nav-item nav-link" to="/staff">Staff</router-link>
+            <!-- <router-link class="nav-item nav-link" to="/loans">Loan Applications</router-link> -->
+            <router-link class="nav-item nav-link" to="/land">Land</router-link>
             <!-- <router-link class="nav-item nav-link disabled" href="#">Disabled</router-link> -->
           </div>
         </div>
       </nav>
-
-    <router-view/>
+    <!-- <transition class="animated bounceInDown"> -->
+       <router-view/>
+    <!-- </transition> -->
+   
 
   </div>
 </template>
@@ -33,6 +37,7 @@ export default {
 
 <style>
 @import './assets/bootstrap.css';
+@import './assets/animate.css';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -46,5 +51,8 @@ export default {
 }
 .nav-item{
   color:#fff;
+}
+transition{
+  -moz-animation-delay: 1s
 }
 </style>
