@@ -4,6 +4,8 @@ import axios from 'axios';
 
 Vue.use(Vuex)
 
+const base_url = "https://loanserver.herokuapp.com";
+
 export const store = new Vuex.Store({
     state:{
         loanApplications:[],
@@ -56,7 +58,7 @@ export const store = new Vuex.Store({
         LOGIN: async (context, payload) => {
             try {
                 console.log(payload)
-                await axios.post('http://localhost:3000/api/v1/login',payload).then((response)=>{
+                await axios.post(base_url + '/api/v1/login',payload).then((response)=>{
                     context.commit('SET_LOGIN',response)
                     return response;
                 })
@@ -70,22 +72,22 @@ export const store = new Vuex.Store({
         // eslint-disable-next-line 
         GET_LOANAPPLICATIONS: async (context, payload) =>{
             console.log('fetch started')
-            let { data } = await axios.get('http://localhost:3000/api/v1/applications')
+            let { data } = await axios.get(base_url + '/api/v1/applications')
             context.commit('SET_LOANAPPLICATIONS',data)
             console.log(data)
         },
 
         // eslint-disable-next-line
         GET_LOANS: async (context, payload) =>{
-            let { data } = await axios.get('http://localhost:3000/api/v1/loans')
+            let { data } = await axios.get(base_url + '/api/v1/loans')
             console.log(data)
-            context.commit('SET_LOANS',data)
+            context.commit('SET_LOANS',data);
         },
 
         UPDATE_LOANAPPLICATION: async (context, payload) => {
              // eslint-disable-next-line 
             try {
-                await axios.put('http://localhost:3000/api/v1/application/update/'+context.state.customerInfo._id, payload)
+                await axios.put(base_url + '/api/v1/application/update/'+context.state.customerInfo._id, payload)
                             .then((response)=>{
                                console.log(response)
                             }).catch((error)=>{
@@ -98,14 +100,14 @@ export const store = new Vuex.Store({
 
          // eslint-disable-next-line 
         GET_GUARANTORS: async (context, payload) => {
-            let { data } = await axios.get('http://localhost:3000/api/v1/guarantors/show/'+context.state.customerInfo.userId)
+            let { data } = await axios.get(base_url + '/api/v1/guarantors/show/'+context.state.customerInfo.userId)
             context.commit('SET_GUARANTORS',data)
            
         },
 
         // eslint-disable-next-line
         GET_MEMBERS: async (context, payload)=>{
-            let {data} = await axios.get('http://localhost:3000/api/v1/users')
+            let {data} = await axios.get(base_url + '/api/v1/users')
             context.commit('SET_MEMBERS',data)
         }
     

@@ -16,9 +16,9 @@
           </div>
         </div>
       </nav>
-    <!-- <transition class="animated bounceInDown"> -->
+    <transition name="custom" enter-active-class="animated flipInX" leave-active-class="animated flipOutY">
        <router-view/>
-    <!-- </transition> -->
+    </transition>
    
 
   </div>
@@ -52,7 +52,10 @@ export default {
 .nav-item{
   color:#fff;
 }
-transition{
-  -moz-animation-delay: 1s
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

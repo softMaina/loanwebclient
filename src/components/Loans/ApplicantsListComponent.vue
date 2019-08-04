@@ -1,7 +1,7 @@
 <template>
     <div>
           <ul class="list-group shadow-sm">
-            <li class="list-group-item" v-for="loan in Applicants" :key="loan.id" @click="userData(loan)">{{ loan.users[0].username }}</li>
+            <li class="list-group-item" v-for="loan in Applicants" :key="loan.id" @click="userData(loan)">username</li>
           </ul>
     </div>
 </template>

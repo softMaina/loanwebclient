@@ -38,6 +38,7 @@
 </template>
 <script>
 import axios from 'axios'
+const base_url = "https://loanserver.herokuapp.com";
 export default {
     name:'addmembers',
     data(){
@@ -53,7 +54,7 @@ export default {
     },
     methods:{
         async addMember(){
-            await axios.post('http://localhost:3000/api/v1/register',this.member).then((response)=>{
+            await axios.post( base_url + '/api/v1/register',this.member).then((response)=>{
                  this.flashSuccess('User registered successfully');
               
             })
