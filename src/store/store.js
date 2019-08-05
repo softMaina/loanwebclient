@@ -4,7 +4,10 @@ import axios from 'axios';
 
 Vue.use(Vuex)
 
-const base_url = "https://loanserver.herokuapp.com";
+Vue.prototype.hostname = 'http://localhost:3000'
+
+const base_url ='https://loanserver.herokuapp.com';
+
 
 export const store = new Vuex.Store({
     state:{
@@ -14,7 +17,9 @@ export const store = new Vuex.Store({
         Loans:[],
         auth:[],
         members:[],
+        staff:[],
         land:[],
+        token: localStorage.getItem('token') || '',
     },
     getters:{
         APPLICATIONS: state => state.loanApplications,
@@ -23,7 +28,11 @@ export const store = new Vuex.Store({
         LOANS:state => state.Loans,
         AUTH:state => state.auth,
         MEMBERS:state => state.members,
+        STAFF:state=> state.staff,
         LAND:state => state.land,
+        TOKEN:state => state.token,
+        isLoggedIn: state => !!state.token,
+        
 
     },
     mutations:{
@@ -45,11 +54,12 @@ export const store = new Vuex.Store({
         SET_MEMBERS: (state, payload)=>{
             state.members = payload
         },
-        SET_LAND: (state, payload)=>{
+        SET_STAFF: (state,payload)=>{
+            state.staff = payload
+        },
+        SET_LANDS: (state, payload)=>{
             state.land = payload
         }
-
-        
 
     },
   
@@ -60,6 +70,9 @@ export const store = new Vuex.Store({
                 console.log(payload)
                 await axios.post(base_url + '/api/v1/login',payload).then((response)=>{
                     context.commit('SET_LOGIN',response)
+                    localStorage.setItem('token',response.data.token)
+                    localStorage.setItem('user',response.data.user)
+                    console.log(response)
                     return response;
                 })
                 
@@ -68,6 +81,11 @@ export const store = new Vuex.Store({
                 return error;
             }
          
+        },
+        //eslint-disable-next-line
+        LOGOUT: async(context, payload)=>{
+            localStorage.removeItem('token')
+            localStorage.removeItem('auth')
         },  
         // eslint-disable-next-line 
         GET_LOANAPPLICATIONS: async (context, payload) =>{
@@ -109,6 +127,18 @@ export const store = new Vuex.Store({
         GET_MEMBERS: async (context, payload)=>{
             let {data} = await axios.get(base_url + '/api/v1/users')
             context.commit('SET_MEMBERS',data)
+        },
+        
+        // eslint-disable-next-line
+        GET_STAFF: async (context, payload)=>{
+            let {data} = await axios.get(base_url + '/api/v1/staff')
+            context.commit('SET_STAFF',data)
+        },
+        // eslint-disable-next-line
+        GET_LANDS: async (context, payload) =>{
+            let {data} = await axios.get(base_url + '/api/v1/land')
+            console.log(data)
+            context.commit('SET_LANDS',data)
         }
     
     }

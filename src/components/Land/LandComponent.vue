@@ -7,33 +7,60 @@
             <div>
                 <ul class="list-group">
                    
-                    <li class="list-group-item">
+                    <li class="list-group-item" v-for="(land,index) in Lands" :key="index">
                          <span style="float:left">
                         <router-link class="btn btn-sm btn-info" to="/member">View</router-link>
                         </span>
-                         Nyeri OutSpan
+                        
+                         <div class="card">
+                             <div class="card-body">
+                                 <div class="card-img land">
+                                     {{ url = 'http://localhost:3000/'+land.image }}
+                                     <img :src="url" alt="img">
+                                 </div>
+                                 <div class="card-text">Location: {{land.location}}</div>
+                                 <div class="card-text text-info">Description: {{land.description}}</div>
+                                 <div class="card-text text-danger">Cost: {{land.cost}} ksh</div>
+
+                             </div>
+                         </div>
                         <span style="float:right">
                             <button class="btn btn-sm btn-warning">Edit</button>
-                            <button class="btn btn-sm btn-danger">Delete</button></span></li>
+                            <button class="btn btn-sm btn-danger" @click="deleteLand(land._id)">Delete</button></span>
+                    </li>
                 </ul>
             </div>
            
         </div>
          <div class="col-md-2">
              <div class="mt-5"></div>
-                <router-link class="btn btn-sm btn-info" to="/addmembers">Add Property</router-link>
+                <router-link class="btn btn-sm btn-info" to="/addLand">Add Property</router-link>
         </div>
         </div>
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
    name:'land',
    methods:{
        membersForm(){
            console.log('Learn it')
+       },
+       deleteLand(id){
+           axios.delete(this.hostname + '/api/v1/land/delete/' + id).then((response)=>{
+               console.log(response)
+           })
        }
-   }
+   },
+    mounted(){
+        this.$store.dispatch('GET_LANDS')
+    },
+    computed:{
+      Lands(){
+          return this.$store.getters.LAND;
+      }
+    },
 }
 </script>
 <style>
@@ -42,6 +69,10 @@ export default {
 }
 .members{
     min-height: 200px;
+}
+.land img{
+    height:200px;
+    width:200px;
 }
 </style>
 

@@ -7,16 +7,24 @@ import addmembers from '../components/Members/AddMemberComponent.vue';
 import member from '../components/Members/MemberComponent.vue';
 import staff from '../components/Staff/StaffComponent.vue';
 import land from '../components/Land/LandComponent.vue';
+import addLand from '../components/Land/AddLandComponent.vue';
+import PageNotFound from '../shared/PageNotFoundComponent.vue';
+
+import uploads from '../shared/uploadComponent.vue';
 
 const routes = [
-    {path:'/',component: index},
-    {path:'/loans',component:loans},
+    {path:'*',component:PageNotFound},
+    {path:'/',component: index,meta:{ requiresAuth: true }},
+    {path:'/loans',component:loans,meta:{ requiresAuth: true }},
     {path:'/login',component:login},
-    {path:'/members',component:members},
-    {path:'/addmembers',component:addmembers},
-    {path:'/member',component:member},
-    {path:'/staff',component:staff},
-    {path:'/land',component:land}
+    {path:'/members',component:members,meta:{ requiresAuth: true }},
+    {path:'/addmembers',component:addmembers,meta:{ requiresAuth: true }},
+    {path:'/member',component:member,meta:{ requiresAuth: true }},
+    {path:'/staff',component:staff,meta:{ requiresAuth: true }},
+    {path:'/land',component:land,meta:{ requiresAuth: true }},
+    {path: '/uploads', component: uploads,meta:{ requiresAuth: true }},
+    {path:'/addLand',component:addLand,meta:{ requiresAuth: true }}
 ];
+
 
 export default routes;

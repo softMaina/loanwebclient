@@ -7,8 +7,8 @@
             <div>
                 <ul class="list-group">
                    
-                    <li class="list-group-item">
-                         Allan Maina
+                    <li class="list-group-item" v-for="(staff,index) in Staff" :key="index">
+                         {{staff.firstname}}
                         <span style="float:right">
                             <button class="btn btn-sm btn-warning">Edit</button>
                             <button class="btn btn-sm btn-danger">Delete</button></span>
@@ -19,7 +19,7 @@
         </div>
          <div class="col-md-2">
              <div class="mt-5"></div>
-                <router-link class="btn btn-sm btn-info" to="/addmembers">Add Stuff</router-link>
+                <router-link class="btn btn-sm btn-info" to="/addmembers">Add Staff</router-link>
         </div>
         </div>
     </div>
@@ -31,7 +31,15 @@ export default {
        membersForm(){
            console.log('Learn it')
        }
-   }
+   },
+    mounted(){
+        this.$store.dispatch('GET_STAFF')
+    },
+    computed:{
+      Staff(){
+          return this.$store.getters.STAFF;
+      }
+    },
 }
 </script>
 <style>

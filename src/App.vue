@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-      <nav class="navbar navbar-expand-lg navbar-light shadow">
+      <nav class="navbar navbar-expand-lg navbar-light shadow" v-if="this.$router.currentRoute.path !== '/login' ">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -13,8 +13,11 @@
             <!-- <router-link class="nav-item nav-link" to="/loans">Loan Applications</router-link> -->
             <router-link class="nav-item nav-link" to="/land">Land</router-link>
             <!-- <router-link class="nav-item nav-link disabled" href="#">Disabled</router-link> -->
+          
           </div>
+          
         </div>
+          <span style="float:right;"><button class="btn btn-success btn-sm" @click="logout">Logout</button></span>
       </nav>
     <transition name="custom" enter-active-class="animated flipInX" leave-active-class="animated flipOutY">
        <router-view/>
@@ -32,6 +35,11 @@ var bootstrap = require('bootstrap');
 export default {
   
   name: 'app',
+  methods:{
+    logout(){
+      this.$store.dispatch('LOGOUT').then(()=> this.$router.push('/login'))
+    }
+  }
 }
 </script>
 

@@ -2,9 +2,9 @@
     <div class="container">
         <div class="row col-md-12">
             <div class="col-md-12">
-            <h4 class="text-center">Allan Maina</h4>
-            <p class="text-center">allancodes@gmail.com</p>
-            <p class="text-center">+254719546525</p>
+            <h4 class="text-center">Under Delopment</h4>
+            <p class="text-center">example@gmail.com</p>
+            <p class="text-center">56</p>
             </div>
             
             <div class="shadow col-md-6">

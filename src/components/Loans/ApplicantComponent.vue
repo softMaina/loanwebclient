@@ -6,7 +6,7 @@
 
                 <div class="card-body">
                   <ul class="list-group" v-if="$store.getters.CUSTOMER != ''">
-                    <li class="list-group-item">Name: {{ $store.getters.CUSTOMER.users[0].username }}</li>
+                    <li class="list-group-item">Name: {{ $store.getters.CUSTOMER.users[0].firstname }} {{ $store.getters.CUSTOMER.users[0].lastname }}</li>
                     <li class="list-group-item">Loan: {{ $store.getters.CUSTOMER.amount }}</li>
                     <li class="list-group-item">Date: {{ $store.getters.CUSTOMER.date }}</li>
                     <li class="list-group-item">Status: {{ $store.getters.CUSTOMER.status }} </li>

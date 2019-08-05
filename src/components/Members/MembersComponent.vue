@@ -7,14 +7,14 @@
             <div>
                 <ul class="list-group">
                    
-                    <li class="list-group-item" v-for="(member,index) in Members" :key="index">
+                    <li class="list-group-item" v-for="(member,index) in Members" :key="index" v-bind:style="[member.approved ? {backgroundColor:'#FFF'}: {background:'#FFB4A3'}]">
                     
                               <span style="float:left">
                         <router-link class="btn btn-sm btn-info" to="/member">View</router-link>
                         </span>
                          {{member.firstname}}
                         <span style="float:right">
-                            <button class="btn btn-sm btn-warning">Approve</button>
+                            <button class="btn btn-sm btn-warning" @click="approveMember(member._id)" v-if="!member.approved">Approve</button>
                             <button class="btn btn-sm btn-danger">Reject</button></span>
                         
                     </li>
@@ -30,11 +30,18 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
    name:'members',
    methods:{
        membersForm(){
            console.log('Learn it')
+       },
+       approveMember(id){
+           axios.put(this.hostname + '/api/v1/user/update/'+id).then((response)=>{
+               console.log(response)
+               console.log('user updated')
+           })
        }
    },
     mounted(){
