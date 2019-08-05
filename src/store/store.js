@@ -4,7 +4,7 @@ import axios from 'axios';
 
 Vue.use(Vuex)
 
-Vue.prototype.hostname = 'http://localhost:3000'
+Vue.prototype.hostname = 'https://loanserver.herokuapp.com'
 
 const base_url ='https://loanserver.herokuapp.com';
 
