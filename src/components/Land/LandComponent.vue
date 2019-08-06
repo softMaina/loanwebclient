@@ -15,7 +15,7 @@
                          <div class="card">
                              <div class="card-body">
                                  <div class="card-img land">
-                                     {{ url = this.base_url+land.image }}
+                                     {{ url = 'https://loanserver.herokuapp.com/'+land.image }}
                                      <img :src="url" alt="img">
                                  </div>
                                  <div class="card-text">Location: {{land.location}}</div>
@@ -45,7 +45,7 @@ export default {
    name:'land',
    data(){
        return {
-           base_url : this.hostname
+           base_url : "https://loanserver.herokuapp.com/"
        }
    },
    methods:{
