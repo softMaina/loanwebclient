@@ -15,7 +15,7 @@
                          <div class="card">
                              <div class="card-body">
                                  <div class="card-img land">
-                                     {{ url = 'http://localhost:3000/'+land.image }}
+                                     {{ url = this.hostname+land.image }}
                                      <img :src="url" alt="img">
                                  </div>
                                  <div class="card-text">Location: {{land.location}}</div>
