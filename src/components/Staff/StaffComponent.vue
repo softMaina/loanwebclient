@@ -8,10 +8,15 @@
                 <ul class="list-group">
                    
                     <li class="list-group-item" v-for="(staff,index) in Staff" :key="index">
-                         {{staff.firstname}}
-                        <span style="float:right">
-                            <button class="btn btn-sm btn-warning">Edit</button>
-                            <button class="btn btn-sm btn-danger">Delete</button></span>
+                         <div class="card">
+                            <div class="card-body">
+                                <p class="card-text">Name: {{staff.firstname}} {{staff.lastname}}</p>
+                                <p class="card-text">Email: {{staff.email}}</p>
+                                <p class="card-text">Tel: {{staff.contact}}</p>
+                                <button  class="card-link btn btn-primary btn-sm" @click="approveMember(staff._id)">Edit</button>
+                                <button  class="card-link btn btn-danger btn-sm" @click="rejectMember(staff._id)">Delete</button>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>

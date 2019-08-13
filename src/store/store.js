@@ -5,8 +5,10 @@ import axios from 'axios';
 Vue.use(Vuex)
 
 Vue.prototype.hostname = 'https://loanserver.herokuapp.com'
+// Vue.prototype.hostname = 'http://localhost:3000'
 
 const base_url ='https://loanserver.herokuapp.com';
+// const base_url ='http://localhost:3000';
 
 
 export const store = new Vuex.Store({
@@ -119,6 +121,7 @@ export const store = new Vuex.Store({
          // eslint-disable-next-line 
         GET_GUARANTORS: async (context, payload) => {
             let { data } = await axios.get(base_url + '/api/v1/guarantors/show/'+context.state.customerInfo.userId)
+            console.log(data)
             context.commit('SET_GUARANTORS',data)
            
         },

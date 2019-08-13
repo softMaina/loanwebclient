@@ -9,6 +9,7 @@ import staff from '../components/Staff/StaffComponent.vue';
 import land from '../components/Land/LandComponent.vue';
 import addLand from '../components/Land/AddLandComponent.vue';
 import PageNotFound from '../shared/PageNotFoundComponent.vue';
+import Payment from '../components/Payments/PaymentComponent.vue';
 
 import uploads from '../shared/uploadComponent.vue';
 
@@ -19,11 +20,12 @@ const routes = [
     {path:'/login',component:login},
     {path:'/members',component:members,meta:{ requiresAuth: true }},
     {path:'/addmembers',component:addmembers,meta:{ requiresAuth: true }},
-    {path:'/member',component:member,meta:{ requiresAuth: true }},
+    {path:'/member',name:'member',component:member,meta:{ requiresAuth: true }},
     {path:'/staff',component:staff,meta:{ requiresAuth: true }},
     {path:'/land',component:land,meta:{ requiresAuth: true }},
     {path: '/uploads', component: uploads,meta:{ requiresAuth: true }},
-    {path:'/addLand',component:addLand,meta:{ requiresAuth: true }}
+    {path:'/addLand',component:addLand,meta:{ requiresAuth: true }},
+    {path:'/userpayments',name:'user_payments',component:Payment, meta:{ requiresAuth:true }}
 ];
 
 

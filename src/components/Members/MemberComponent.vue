@@ -17,9 +17,23 @@
       
     </div>    
 </template>
-export default{
-    name:'member'
+<script>
+import axios from "axios"
+export default {
+    name:'member',
+    data(){
+        return {
+            user:{}
+        }
+    },
+    mounted(){
+        // var id;
+        axios.get("http://localhost:3000/api/v1/users/report/" + this.$route.params.id).then(response=>{
+            console.log(response)
+        })
+    }
 }
+</script>
 <style>
 
 </style>

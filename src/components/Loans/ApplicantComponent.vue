@@ -8,7 +8,7 @@
                   <ul class="list-group" v-if="$store.getters.CUSTOMER != ''">
                     <li class="list-group-item">Name: {{ $store.getters.CUSTOMER.users[0].firstname }} {{ $store.getters.CUSTOMER.users[0].lastname }}</li>
                     <li class="list-group-item">Loan: {{ $store.getters.CUSTOMER.amount }}</li>
-                    <li class="list-group-item">Date: {{ $store.getters.CUSTOMER.date }}</li>
+                    <li class="list-group-item">Date: {{ $store.getters.CUSTOMER.date | moment }}</li>
                     <li class="list-group-item">Status: {{ $store.getters.CUSTOMER.status }} </li>
                     <li class="list-group-item"><button class="btn btn-success" @click="acceptApplication()">Accept</button>
                                                 <button class="btn btn-danger " @click="rejectApplication()">Reject</button>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import moment from "moment"
 export default {
     name:'applicant',
     created(){
@@ -59,7 +60,12 @@ export default {
         });
 
       }
-    }
+    },
+    filters:{
+        moment: function(date){
+            return moment(date).format('YYYY-DD-MM,  h:mm:ss a');
+        }
+    },
 }
 </script>
 

@@ -12,6 +12,7 @@
             <router-link class="nav-item nav-link" to="/staff">Staff</router-link>
             <!-- <router-link class="nav-item nav-link" to="/loans">Loan Applications</router-link> -->
             <router-link class="nav-item nav-link" to="/land">Land</router-link>
+            <router-link class="nav-item nav-link" to="/loans">Loans</router-link>
             <!-- <router-link class="nav-item nav-link disabled" href="#">Disabled</router-link> -->
           
           </div>

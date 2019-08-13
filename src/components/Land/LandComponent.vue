@@ -4,18 +4,14 @@
         <div class="col-md-8">
             <h4 class="text-center">Land And Properties</h4>
             <hr>
-            <div>
-                <ul class="list-group">
+            <div class="row">
                    
-                    <li class="list-group-item" v-for="(land,index) in Lands" :key="index">
-                         <span style="float:left">
-                        <router-link class="btn btn-sm btn-info" to="/member">View</router-link>
-                        </span>
-                        
+                    <div class="col-md-6" v-for="(land,index) in Lands" :key="index">   
                          <div class="card">
+                             <p class="badge badge-info">{{ land.sold ? "Not Available" : "Available" }}</p>
                              <div class="card-body">
                                  <div class="card-img land">
-                                     {{ url = 'https://loanserver.herokuapp.com/'+land.image }}
+                                    <p class="" style="display:none;"> {{ url = "https://loanserver.herokuapp.com/"+land.image }}</p>
                                      <img :src="url" alt="img">
                                  </div>
                                  <div class="card-text">Location: {{land.location}}</div>
@@ -23,15 +19,17 @@
                                  <div class="card-text text-danger">Cost: {{land.cost}} ksh</div>
 
                              </div>
+                            <span style="float:right">
+                                <button class="card-link btn btn-sm btn-warning">Edit</button>
+                                <button class="card-link btn btn-sm btn-danger" @click="deleteLand(land._id)">Delete</button>
+                            </span>
                          </div>
-                        <span style="float:right">
-                            <button class="btn btn-sm btn-warning">Edit</button>
-                            <button class="btn btn-sm btn-danger" @click="deleteLand(land._id)">Delete</button></span>
-                    </li>
-                </ul>
-            </div>
-           
+                       
+                    </div>
+             </div> 
         </div>
+           
+           
          <div class="col-md-2">
              <div class="mt-5"></div>
                 <router-link class="btn btn-sm btn-info" to="/addLand">Add Property</router-link>
@@ -45,7 +43,8 @@ export default {
    name:'land',
    data(){
        return {
-           base_url : "https://loanserver.herokuapp.com/"
+        //    base_url : "https://loanserver.herokuapp.com/"
+        base_url:"http:localhost:3000/"
        }
    },
    methods:{
