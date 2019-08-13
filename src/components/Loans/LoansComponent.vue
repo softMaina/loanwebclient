@@ -2,6 +2,9 @@
     <div class="container">
         <!-- list all of the granted loans
         and computer basic total of the loans -->
+        <div class="jumbotron">
+            <h3 class="text-center text-info">Loan Report</h3>
+        </div>
         <div class="row">
              <div class="col-md-6" v-for="loan in this.$store.getters.LOANS" :key="loan" style="width: 30rem;">
             <div class="card mb-2 shadow"  >
