@@ -5,6 +5,7 @@
             <p>Create a land property</p>
         </div>
         <div class="col-md-8 shadow">
+             <flash-message></flash-message>
             <form @submit.prevent="addLand">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="title" v-model="land.title">
@@ -83,10 +84,12 @@ export default {
                     }
                 }
             ).then(response =>{
+                this.flashSuccess('Land Added Successfully');
                 console.info(response)
             })
             .catch(error =>{req.file
                 console.error("file upload faild",error)
+                this.flashDanger('Loan Application Rejected');
             });
            
         },
